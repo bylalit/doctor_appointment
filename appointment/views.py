@@ -9,8 +9,6 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-# Create your views here.
-
 def index(request):
     doctors = Doctor.objects.all()[:10]
     return render(request, 'index.html', {'doctors': doctors, })
@@ -28,7 +26,6 @@ def doctor(request, category_name):
 def doctor_info(request, id):
     doctor = Doctor.objects.get(id=id)
     releted_doctor = Doctor.objects.filter(category=doctor.category)[:10]
-    # print(releted_doctor)
     
     return render(request, 'doctor_info.html', {'doctor': doctor, 'releted_doctor': releted_doctor})
 
@@ -164,7 +161,6 @@ def logout_user(request):
 
 
 
-
 # admin
 
 def dash_login(request):
@@ -247,5 +243,4 @@ def add_doctor(request):
 def doctor_list(request):
     doctors = Doctor.objects.all()
     return render(request, 'dashboard/doctor_list.html', {'doctors': doctors, 'action': 'doctor_list'})
-
 
