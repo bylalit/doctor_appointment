@@ -132,7 +132,8 @@
 
     {% comment %}  {% endcomment %}
 
-    {% if user.is_authenticated %}
+
+    {% if request.session.login %}
       <div class="position-relative dropdown">
         <a href="#" class="d-inline-block" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="{% static "assets/assets_frontend/upload_area.png" %}" alt="Profile" height="36">

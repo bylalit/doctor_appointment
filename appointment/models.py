@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -15,7 +17,7 @@ class Doctor(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     password = models.CharField(max_length=100)
-    experience = models.IntegerField(max_length=20)
+    experience = models.IntegerField()
     fees = models.FloatField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     degree = models.CharField(max_length=50)
@@ -26,6 +28,14 @@ class Doctor(models.Model):
     def __str__(self):
         return self.name
     
+    
+class Patients(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField()
+    password = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.username
 
 
 class Appointment(models.Model):
@@ -35,7 +45,7 @@ class Appointment(models.Model):
         ('Cancelled', 'Cancelled'),
     )
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Patients, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     appointment_date = models.DateField()
     appointment_time = models.TimeField()
@@ -45,3 +55,7 @@ class Appointment(models.Model):
     
     def __str__(self):
         return f"{self.user.username} -> {self.doctor.name} @ {self.appointment_date}"
+    
+
+
+    
