@@ -29,10 +29,8 @@ def doctor_info(request, id):
     
     return render(request, 'doctor_info.html', {'doctor': doctor, 'releted_doctor': releted_doctor})
 
-
 def about(request):
     return render(request, 'about.html')
-
 
 def contact(request):
     return render(request, 'contact.html')
