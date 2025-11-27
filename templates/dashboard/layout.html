@@ -112,7 +112,7 @@
             {% if role == 'admin' %}
                 <span>Hi! Admin</span>
             {% else %}
-                <span>Hi! Dr. {{ doctor.name }}</span>
+                <span>Hi! {{ doctor.name }}</span>
             {% endif %}
             <a href="{% url "dash_logout" %}" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-1">Logout</a>
         </div>
