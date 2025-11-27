@@ -101,36 +101,58 @@
 
 <body>
 
-
     <header class="d-flex justify-content-between align-items-center border-bottom border-secondary px-4"
         style="height: 64px;">
         <div class="d-flex align-items-center position-relative">
-            <a href="{% url "home" %}">
+            <a href="{% url "dash_admin" %}">
                 <img src="{% static "assets/assets_frontend/logo.svg" %}" alt="GreenCart logo icon with green color" width='70%'>
             </a>
         </div>
         <div class="d-flex align-items-center gap-3 text-secondary small">
-            <span>Hi! Admin</span>
+            {% if role == 'admin' %}
+                <span>Hi! Admin</span>
+            {% else %}
+                <span>Hi! Dr. {{ doctor.name }}</span>
+            {% endif %}
             <a href="{% url "dash_logout" %}" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-1">Logout</a>
         </div>
     </header>
 
     <main class="d-flex" style="min-height: calc(100vh - 64px);">
 
-        <nav id="sidebar" class="border-end border-secondary p-3" style="width: 18rem;">
-            <a href="{% url "dash_admin" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'admin' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
-                <i class="fa-solid fa-house"></i> <span class='small'>Dashboard</span>
-            </a>
-            <a href="{% url "appointments" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'appointments' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
-                <i class="fa-regular fa-calendar-check"></i> <span class='small'>Appointments</span> 
-            </a>
-            <a href="{% url "add_doctor" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'add_doctor' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
-                <i class="fas fa-plus-square"></i> <span class='small'>Add Doctor</span>
-            </a>
-            <a href="{% url "doctor_list" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'doctor_list' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="list">
-                <i class="fas fa-list-ul"></i> <span class='small'>Doctors List</span>
-            </a>
-        </nav>
+        {% if role == 'admin' %}
+            <nav id="sidebar" class="border-end border-secondary p-3" style="width: 18rem;">
+                <a href="{% url "dash_admin" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'admin' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
+                    <i class="fa-solid fa-house"></i> <span class='small'>Dashboard</span>
+                </a>
+                <a href="{% url "appointments" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'appointments' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
+                    <i class="fa-regular fa-calendar-check"></i> <span class='small'>Appointments</span> 
+                </a>
+                <a href="{% url "add_doctor" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'add_doctor' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
+                    <i class="fas fa-plus-square"></i> <span class='small'>Add Doctor</span>
+                </a>
+                <a href="{% url "doctor_list" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'doctor_list' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="list">
+                    <i class="fas fa-list-ul"></i> <span class='small'>Doctors List</span>
+                </a>
+            </nav>
+        {% endif %}
+
+        {% if role == 'doctor' %}
+            <nav id="sidebar" class="border-end border-secondary p-3" style="width: 18rem;">
+                <a href="{% url "doctor_dashboard" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'doctor' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
+                    <i class="fa-solid fa-house"></i> <span class='small'>Dashboard</span>
+                </a>
+                <a href="{% url "doctor_appointments" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'doctor_appointments' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
+                   <i class="fa-regular fa-calendar-check"></i><span class='small'>My Appointments</span>
+                </a>
+                <a href="{% url "doctor_profile" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'profile' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
+                    <i class="fa-solid fa-user"></i> <span class='small'>My Profile</span>
+                </a>
+                <a href="{% url "edit_doctor" %}" class="nav-link d-flex align-items-center gap-2 p-3 fs-5 text-dark {% if action == 'edit_doctor' %}bg-success bg-opacity-25 border-start border-success fw-medium{% endif %}" data-id="add">
+                    <i class="fa-solid fa-upload"></i> <span class='small'>Update Profile</span>
+                </a>
+            </nav>
+        {% endif %}
 
 
         {% if messages %}

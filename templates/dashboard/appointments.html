@@ -38,10 +38,16 @@
                             <td>${{ appointment.doctor.fees }}</td>
                             <td class='text-center'>
                                 {% if appointment.status == 'Pending' %}
-                                    <form method="post" action="{% url 'cancel_appointment' appointment.id %}">
-                                        {% csrf_token %}
-                                        <button class="btn btn-sm btn-light border text-danger rounded-circle p-0" style="width: 24px; height: 24px;">×</button>
-                                    </form>
+                                    <div class='d-flex justify-content-center'>
+                                        <form method="post" action="{% url 'cancel_appointment' appointment.id %}">
+                                            {% csrf_token %}
+                                            <button class="btn btn-sm btn-light border text-danger rounded-circle p-0 me-2" style="width: 24px; height: 24px;">×</button>
+                                        </form>
+                                        <form method="post" action="{% url 'approved_appointment' appointment.id %}">
+                                            {% csrf_token %}
+                                            <button class="btn btn-sm btn-light border text-success rounded-circle p-0" style="width: 30px; height: 30px;">✓</button>
+                                        </form>
+                                    </div>
                                 {% elif appointment.status == 'Approved' %}
                                     <p class="text-success m-0 small">Complated</p>
                                 {% else %}

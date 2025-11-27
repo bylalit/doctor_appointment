@@ -15,6 +15,7 @@ class Doctor(models.Model):
     image = models.ImageField(upload_to='doctor_image')
     name = models.CharField(max_length=100)
     email = models.EmailField()
+    username = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=100)
     experience = models.IntegerField()
     fees = models.FloatField()
@@ -26,7 +27,7 @@ class Doctor(models.Model):
     def __str__(self):
         return self.name
     
-    
+ 
 class Patients(models.Model):
     username = models.CharField(max_length=100)
     email = models.EmailField()
@@ -54,4 +55,3 @@ class Appointment(models.Model):
     def __str__(self):
         return f"{self.user.username} -> {self.doctor.name} @ {self.appointment_date}"
     
-

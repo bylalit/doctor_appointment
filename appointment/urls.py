@@ -9,6 +9,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('user_appointment/', views.user_appointment, name='user_appointment'),
     path('book_appointment/<int:doctor_id>/', views.book_appointment, name='book_appointment'),
+    path('approved_appointment/<int:id>/', views.approved_appointment, name='approved_appointment'),
     path('cancel_appointment/<int:id>/', views.cancel_appointment, name='cancel_appointment'),
    
     
@@ -23,5 +24,10 @@ urlpatterns = [
     path('dash_admin/', views.dash_admin, name='dash_admin'),
     path('appointments/', views.appointments, name='appointments'),
     path('add_doctor/', views.add_doctor, name='add_doctor'),
-    path('doctor_list/', views.doctor_list, name='doctor_list'),    
+    path('doctor_list/', views.doctor_list, name='doctor_list'),
+    path('doctor_dashboard/', views.doctor_dashboard, name='doctor_dashboard'),
+    path('doctor_appointments/', views.doctor_appointments, name='doctor_appointments'),
+    path('doctor_profile/', views.doctor_profile, name='doctor_profile'),
+    path('edit_doctor/', views.edit_doctor, name='edit_doctor'),
+
 ]
