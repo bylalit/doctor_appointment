@@ -215,11 +215,6 @@ def dash_login(request):
     return render(request, 'dashboard/login.html')
 
 
-# def dash_logout(request):
-#     logout(request)
-#     messages.success(request, "LogOut Succefully!")
-#     return redirect(dash_login)
-
 def dash_logout(request):
     if 'doctor_id' in request.session:
         del request.session['doctor_id']
@@ -234,7 +229,7 @@ def dash_admin(request):
     if request.user.is_superuser:
         total_doctors = Doctor.objects.count()
         appointment_total = Appointment.objects.count()
-        total_patients = User.objects.filter(is_staff=False).count()
+        total_patients = Patients.objects.count()
         latest_appointments = Appointment.objects.all().order_by('-created_at')[:10]
 
         return render(request, 'dashboard/index.html', {'action': 'admin', "role" : "admin", 'total_doctors': total_doctors, 'appointment_total': appointment_total, 'total_patients': total_patients, 'appointments': latest_appointments})
