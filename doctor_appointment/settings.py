@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-eb$+t)p+@57odmck0%%j()5f-kqc35s#h8_=!r#kt%9gq2=-se
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -73,12 +73,12 @@ WSGI_APPLICATION = 'doctor_appointment.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -118,7 +118,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles_build", "static")
+    os.path.join(BASE_DIR, "static")
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
