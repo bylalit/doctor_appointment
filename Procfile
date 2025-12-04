@@ -1,1 +1,1 @@
-web: gunicorn myprojectname.wsgi
+gunicorn doctor_appointment.wsgi:application
