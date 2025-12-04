@@ -2,14 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "doctor_appointment/asgi.py",
+      "src": "doctor_appointment/wsgi.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "doctor_appointment/asgi.py"
+      "dest": "doctor_appointment/wsgi.py"
     }
   ]
 }
